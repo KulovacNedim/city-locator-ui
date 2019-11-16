@@ -9,6 +9,7 @@ import {MatFormField, MatFormFieldModule, MatInputModule, MatPaginatorModule, Ma
 import {RouterModule, Routes} from '@angular/router';
 import { TableComponent } from './table/table.component';
 import { MapComponent } from './table/map/map.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 const appRoutes: Routes = [
@@ -29,7 +30,8 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatSliderModule,
     MatTableModule,
-    MatInputModule, MatFormFieldModule, RouterModule.forRoot(appRoutes), MatPaginatorModule
+    MatInputModule, MatFormFieldModule, RouterModule.forRoot(appRoutes), MatPaginatorModule,
+    HttpClientModule
   ],
   exports: [
     MatFormField,
