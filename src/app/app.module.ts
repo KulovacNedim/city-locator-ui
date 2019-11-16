@@ -10,6 +10,8 @@ import {RouterModule, Routes} from '@angular/router';
 import { TableComponent } from './table/table.component';
 import { MapComponent } from './table/map/map.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ButtonComponent } from './shared/buttons/button/button.component';
+import {MatButtonModule} from '@angular/material/button';
 
 
 const appRoutes: Routes = [
@@ -20,7 +22,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent, TableComponent, MapComponent
+    AppComponent, TableComponent, MapComponent, ButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatSliderModule,
     MatTableModule,
-    MatInputModule, MatFormFieldModule, RouterModule.forRoot(appRoutes), MatPaginatorModule,
+    MatInputModule, MatFormFieldModule, RouterModule.forRoot(appRoutes), MatPaginatorModule, MatButtonModule,
     HttpClientModule
   ],
   exports: [

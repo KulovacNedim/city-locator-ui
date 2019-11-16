@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
 import {LocationService} from '../shared/services/location.service';
+import {LocationModel} from '../shared/models/location.model';
 
 @Component({
   selector: 'app-table',
@@ -8,45 +9,20 @@ import {LocationService} from '../shared/services/location.service';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-
-
+  dataSource;
+  data;
   constructor(private locationService: LocationService) {
   }
 
   displayedColumns: string[] = ['city', 'state', 'longitude', 'latitude', 'locationId'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  locations: any[] = [];
-
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-
-    this.locationService.getLocations().subscribe((res: any[]) => {
-      this.locations = res;
+    this.locationService.getLocations().subscribe((data: any[]) => {
+      this.data = data;
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
     });
-
   }
 }
-
-export interface PeriodicElement {
-  city: string;
-  state: string;
-  longitude: string;
-  latitude: string;
-  locationId: number;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {city: 'Tesanj', state: 'BiH', longitude: 'longitude', latitude: 'latitude', locationId: 1.1},
-  {city: 'Tesanj', state: 'BiH', longitude: 'longitude', latitude: 'latitude', locationId: 2.2},
-  {city: 'Tesanj', state: 'BiH', longitude: 'longitude', latitude: 'latitude', locationId: 1.1},
-  {city: 'Tesanj', state: 'BiH', longitude: 'longitude', latitude: 'latitude', locationId: 2.2},
-  {city: 'Tesanj', state: 'BiH', longitude: 'longitude', latitude: 'latitude', locationId: 1.1},
-  {city: 'Tesanj', state: 'BiH', longitude: 'longitude', latitude: 'latitude', locationId: 2.2},
-  {city: 'Tesanj', state: 'BiH', longitude: 'longitude', latitude: 'latitude', locationId: 1.1},
-  {city: 'Tesanj', state: 'BiH', longitude: 'longitude', latitude: 'latitude', locationId: 2.2},
-  {city: 'Tesanj', state: 'BiH', longitude: 'longitude', latitude: 'latitude', locationId: 1.1},
-  {city: 'Tesanj', state: 'BiH', longitude: 'longitude', latitude: 'latitude', locationId: 2.2}
-];
