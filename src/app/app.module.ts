@@ -5,7 +5,7 @@ import { MatSliderModule } from '@angular/material/slider';
 
 import {AppComponent} from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatFormField, MatFormFieldModule, MatInputModule, MatTableModule} from '@angular/material';
+import {MatFormField, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatTableModule} from '@angular/material';
 import {RouterModule, Routes} from '@angular/router';
 import { TableComponent } from './table/table.component';
 import { MapComponent } from './table/map/map.component';
@@ -29,7 +29,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatSliderModule,
     MatTableModule,
-    MatInputModule, MatFormFieldModule, RouterModule.forRoot(appRoutes)
+    MatInputModule, MatFormFieldModule, RouterModule.forRoot(appRoutes), MatPaginatorModule
   ],
   exports: [
     MatFormField,
