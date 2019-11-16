@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'city-locator-ui';
+  imgSrc = 'app/assets/mapicon.png';
 }
