@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {throwError} from 'rxjs';
+import {BehaviorSubject, throwError} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocationService {
+
+  selectedLocation: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
 
   constructor(private http: HttpClient) { }
 

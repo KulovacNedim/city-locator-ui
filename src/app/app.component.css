@@ -33,6 +33,9 @@ p {
   color: white;
   font-weight: 600;
 }
+.toolbar a {
+  color: white;
+}
 
 .toolbar img {
   margin: 0 16px;

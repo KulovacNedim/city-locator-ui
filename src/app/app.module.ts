@@ -16,7 +16,7 @@ import {MatButtonModule} from '@angular/material/button';
 
 const appRoutes: Routes = [
   { path: '', component: TableComponent},
-  { path: 'w', component: MapComponent },
+  { path: 'map', component: MapComponent },
 
 ];
 

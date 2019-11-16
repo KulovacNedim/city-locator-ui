@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
 import {LocationService} from '../shared/services/location.service';
-import {LocationModel} from '../shared/models/location.model';
 
 @Component({
   selector: 'app-table',
@@ -24,5 +23,9 @@ export class TableComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
     });
+  }
+
+  select(element: any) {
+    this.locationService.selectedLocation.next(element);
   }
 }

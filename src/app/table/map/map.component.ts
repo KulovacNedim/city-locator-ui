@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LocationService} from '../../shared/services/location.service';
 
 @Component({
   selector: 'app-map',
@@ -11,6 +12,15 @@ export class MapComponent implements OnInit {
   lat = 51.678418;
   lng = 7.809007;
   locationChosen = false;
+
+  lokacija: any;
+
+  constructor(private locationService: LocationService) {
+    this.locationService.selectedLocation.subscribe(location => {
+      this.lat = +location.latitude;
+      this.lng = +location.longitude;
+    });
+  }
 
   onChoseLocation(event) {
     console.log(event)
