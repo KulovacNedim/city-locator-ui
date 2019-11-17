@@ -30,7 +30,7 @@
     <!-- Delete Column -->
     <ng-container matColumnDef="locationId">
       <th mat-header-cell *matHeaderCellDef width="20%"> Delete </th>
-      <td mat-cell *matCellDef="let element"><app-button color="warn" label="DELETE"> </app-button> {{element.id}} </td>
+      <td mat-cell *matCellDef="let element"><button mat-button color="accent" (click)="openDialog(element.id)" style="width: 100%;">DELETE</button></td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -39,4 +39,3 @@
 
   <mat-paginator [pageSizeOptions]="[7, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
-<button mat-button (click)="openDialog()">Confirm box</button>

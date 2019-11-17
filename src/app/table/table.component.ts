@@ -21,26 +21,31 @@ export class TableComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   ngOnInit() {
+    this.getLocations();
+  }
+
+  getLocations = () => {
     this.locationService.getLocations().subscribe((data: any[]) => {
       this.data = data;
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
     });
-  }
+  };
 
   select(element: any) {
     this.locationService.selectedLocation.next(element);
   }
 
-  openDialog(): void {
+  openDialog(id: any): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px',
-      data: 'Do you confirm the deletion of this data?'
+      data: 'Do you confirm the deletion of data?'
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('Yes clicked 1');
-        // DO SOMETHING
+        this.locationService.deleteLocation(id).subscribe(res => {
+          this.getLocations();
+        });
       }
     });
   }

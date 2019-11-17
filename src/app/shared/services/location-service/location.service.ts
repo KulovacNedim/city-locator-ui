@@ -11,12 +11,16 @@ export class LocationService {
 
   constructor(private http: HttpClient) { }
 
-  getLocations() {
+  public getLocations() {
     return this.http.get('http://localhost:8080/api/location');
   }
 
   public submitLocation(location: any): Observable<any> {
     return this.http.put(`http://localhost:8080/api/location`, location);
+  }
+
+  public deleteLocation(id: number) {
+    return this.http.delete('http://localhost:8080/api/location/' + id);
   }
 
   private handleError(err) {
