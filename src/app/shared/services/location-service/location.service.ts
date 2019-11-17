@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {BehaviorSubject, throwError} from 'rxjs';
+import {BehaviorSubject, Observable, throwError} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,10 @@ export class LocationService {
 
   getLocations() {
     return this.http.get('http://localhost:8080/api/location');
+  }
+
+  public submitLocation(location: any): Observable<any> {
+    return this.http.put(`http://localhost:8080/api/location`, location);
   }
 
   private handleError(err) {
