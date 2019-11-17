@@ -1,26 +1,83 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
+import {LocationService} from '../../shared/services/location-service/location.service';
+import {Router} from '@angular/router';
+import {MatDialog} from '@angular/material';
+import {ConfirmationDialogComponent} from '../../shared/modals/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
+export class MapComponent {
 
   title = 'city-locator-ui';
-  lat = 51.678418;
-  lng = 7.809007;
-  locationChosen = false;
+  location: any;
+  coords: {
+    lat: number
+    lng: number
+  };
+  updated = false;
+  newCoords = false;
+
+  constructor(private locationService: LocationService,
+              private router: Router,
+              private dialog: MatDialog) {
+    this.locationService.selectedLocation.subscribe(location => {
+      if (!location) {
+        this.router.navigateByUrl('/');
+      }
+      this.location = location;
+    });
+  }
+
 
   onChoseLocation(event) {
-    console.log(event)
-    this.lat = event.coords.lat;
-    this.lng = event.coords.lng;
-    this.locationChosen = true;
+    this.coords = event.coords;
+    this.newCoords = true;
   }
 
-  ngOnInit(): void {
+  updateCoords() {
+    this.location.latitude = this.coords.lat;
+    this.location.longitude = this.coords.lng;
+
+    this.locationService.submitLocation({
+      id: this.location.id,
+      latitude: this.coords.lat,
+      longitude: this.coords.lng,
+      city: {
+        id: this.location.city.id,
+        name: this.location.city.name,
+        state: {
+          id: this.location.city.state.id,
+          name: this.location.city.state.name
+        }
+      }
+    })
+      .subscribe(locRes => {
+        if (locRes.id) {
+          this.updated = true;
+          this.newCoords = false;
+          this.triggerUpdateNotificationTimer();
+        }
+      });
   }
 
+  triggerUpdateNotificationTimer = () => {
+    setTimeout(() => {
+      this.updated = false;
+    }, 2.0 * 1000);
+  }
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '350px',
+      data: 'Do you confirm update coordinates for ' + this.location.city.name.toUpperCase()  + '?'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.updateCoords();
+      }
+    });
+  }
 }

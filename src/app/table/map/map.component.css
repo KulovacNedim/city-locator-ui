@@ -1,3 +1,22 @@
 agm-map{
-  height: 400px;
+  height: 350px;
+}
+
+info {
+  width: 100%;
+}
+
+.info p {
+  display: inline;
+  margin-right: 30px;
+  color: #1976d2;
+}
+
+.newCoords {
+  color: #1976d2;
+  margin-top: 10px;
+}
+
+.updated {
+  color: green;
 }
