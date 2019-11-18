@@ -9,3 +9,14 @@ table {
 .txtDecor:hover {
    text-decoration: underline;
  }
+
+.head-div {
+  width: 100%;
+}
+
+.head-div button {
+  margin-bottom: 20px;
+  float: right;
+  position: relative;
+  top:-20px;
+}

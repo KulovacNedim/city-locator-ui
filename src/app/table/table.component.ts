@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatPaginator, MatTableDataSource} from '@angular/material';
 import {LocationService} from '../shared/services/location-service/location.service';
 import {ConfirmationDialogComponent} from '../shared/modals/confirmation-dialog/confirmation-dialog.component';
+import {SaveLocationComponent} from '../save-location/save-location.component';
 
 @Component({
   selector: 'app-table',
@@ -39,7 +40,6 @@ export class TableComponent implements OnInit {
   openDialog(id: any): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px',
-      data: 'Do you confirm the deletion of data?'
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
@@ -47,6 +47,16 @@ export class TableComponent implements OnInit {
           this.getLocations();
         });
       }
+    });
+  }
+
+  openCreateNewLocationDialog() {
+    const dialogRef = this.dialog.open(SaveLocationComponent, {
+      width: '850px',
+      data: '0'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.getLocations();
     });
   }
 }
