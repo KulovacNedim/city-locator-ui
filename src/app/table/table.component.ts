@@ -21,17 +21,28 @@ export class TableComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
+  applyFilter(filterValue: string) {
+    console.log(this.data);
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   ngOnInit() {
     this.getLocations();
   }
 
   getLocations = () => {
-    this.locationService.getLocations().subscribe((data: any[]) => {
-      this.data = data;
-      this.dataSource = new MatTableDataSource(data);
+    this.locationService.getLocations().subscribe((resData: any[]) => {
+      this.data = resData;
+      this.dataSource = new MatTableDataSource(resData);
       this.dataSource.paginator = this.paginator;
+
+      this.dataSource.filterPredicate = (data, filter: string): boolean => {
+        return data.city.name.toLowerCase().includes(filter) || data.city.state.name.toLowerCase().includes(filter) ||
+          data.longitude.toLowerCase().includes(filter) || data.latitude.toLowerCase().includes(filter) ||
+          data.id.toString().toLowerCase().includes(filter) === filter;
+      };
     });
-  };
+  }
 
   select(element: any) {
     this.locationService.selectedLocation.next(element);
