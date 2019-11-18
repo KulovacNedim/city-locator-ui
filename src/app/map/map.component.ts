@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
-import {LocationService} from '../../shared/services/location-service/location.service';
+import {LocationService} from '../shared/services/location-service/location.service';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
-import {ConfirmationDialogComponent} from '../../shared/modals/confirmation-dialog/confirmation-dialog.component';
+import {ConfirmationDialogComponent} from '../shared/modals/confirmation-dialog/confirmation-dialog.component';
+import {SaveLocationComponent} from '../save-location/save-location.component';
 
 @Component({
   selector: 'app-map',
@@ -78,6 +79,34 @@ export class MapComponent {
       if (result) {
         this.updateCoords();
       }
+    });
+  }
+
+  openSaveDialog(): void {
+
+    this.locationService.passLocationToSaveModal.next(this.location);
+
+    const dialogRef = this.dialog.open(SaveLocationComponent, {
+      width: '850px',
+      data: this.location.id.toString()
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // setTimeout(dialogRef.close, 1000)
+      }
+      this.locationService.passLocationToSaveModal.next({
+        id: 0,
+        longitude: 0,
+        latitude: 0,
+        city: {
+          id: 0,
+          name: '',
+          state: {
+            id: 0,
+            name: ''
+          }
+        }
+      })
     });
   }
 }

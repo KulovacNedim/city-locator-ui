@@ -1,0 +1,77 @@
+<div class="title-div">
+  <p class="title">{{ message === '0' ? "Create" : "Update" }} new location</p>
+  <p class="updated" *ngIf="updated">{{ location.id === 0 ? 'Saved!' : 'Updated!' }}</p>
+</div>
+<div class="wrapper">
+  <div class="left-side">
+    <form class="example-form" (submit)="openDialog()">
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="City" [formControl]="cityFormControl"
+                     [errorStateMatcher]="matcher" (ngModelChange)="checkFormValidity()"
+                     [(ngModel)]="location.city.name">
+              <mat-error *ngIf="cityFormControl.hasError('required')">
+                City is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="State" [formControl]="stateFormControl"
+                     [errorStateMatcher]="matcher" (ngModelChange)="checkFormValidity()"
+                     [(ngModel)]="location.city.state.name">
+              <mat-error *ngIf="stateFormControl.hasError('required')">
+                State is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Latitude" [formControl]="latitudeFormControl"
+                     [errorStateMatcher]="matcher" (ngModelChange)="checkFormValidity()"
+                     [(ngModel)]="location.latitude" value="{{ location.latitude == 0 ? null : location.latitude}}">
+              <mat-error *ngIf="latitudeFormControl.hasError('required')">
+                Latitude is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Longitude" [formControl]="longitudeFormControl"
+                     [errorStateMatcher]="matcher" (ngModelChange)="checkFormValidity()"
+                     [(ngModel)]="location.longitude" value="{{ location.longitude == 0 ? null : location.longitude}}">
+              <mat-error *ngIf="longitudeFormControl.hasError('required')">
+                Longitude is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button mat-raised-button color="primary" class="submit-btn" [disabled]="!formValid">Submit</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button mat-raised-button color="warn" class="submit-btn" [mat-dialog-close]>Cancel</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <div class="right-side">
+    <p>Click on the map to pick up coordinates.</p>
+    <agm-map [latitude]=mapMarker.markerLat [longitude]=mapMarker.markerLng (mapClick)="populateCoords($event)">
+      <agm-marker [latitude]=mapMarker.markerLat [longitude]=mapMarker.markerLng></agm-marker>
+    </agm-map>
+  </div>
+</div>
+

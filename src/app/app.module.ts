@@ -8,13 +8,14 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatFormField, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatTableModule} from '@angular/material';
 import {RouterModule, Routes} from '@angular/router';
 import {TableComponent} from './table/table.component';
-import {MapComponent} from './table/map/map.component';
+import {MapComponent} from './map/map.component';
 import {HttpClientModule} from '@angular/common/http';
 import {ButtonComponent} from './shared/buttons/button/button.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ConfirmationDialogComponent } from './shared/modals/confirmation-dialog/confirmation-dialog.component';
+import { SaveLocationComponent } from './save-location/save-location.component';
 
 
 const appRoutes: Routes = [
@@ -25,7 +26,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent, TableComponent, MapComponent, ButtonComponent, ConfirmationDialogComponent
+    AppComponent, TableComponent, MapComponent, ButtonComponent, ConfirmationDialogComponent, SaveLocationComponent
   ],
   imports: [
     BrowserModule,
@@ -42,10 +43,12 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatDialogModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   entryComponents: [
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    SaveLocationComponent
   ],
   exports: [
     MatFormField,
