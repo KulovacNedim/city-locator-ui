@@ -96,7 +96,6 @@ export class SaveLocationComponent {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(this.message);
         if (this.message === '0') {
           this.locationService.saveLocation(this.location).subscribe();
         } else {
