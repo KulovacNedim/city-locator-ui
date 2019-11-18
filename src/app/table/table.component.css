@@ -1,5 +1,6 @@
 table {
   width: 100%;
+  margin-top: -20px;
 }
 
 .txtDecor {
@@ -12,11 +13,13 @@ table {
 
 .head-div {
   width: 100%;
+  margin-top: -20px;
+}
+.head-div div {
+  display: inline;
 }
 
 .head-div button {
-  margin-bottom: 20px;
   float: right;
-  position: relative;
-  top:-20px;
+  margin-top: 20px;
 }

@@ -1,10 +1,17 @@
+<app-spinner *ngIf="spinner"></app-spinner>
 <div class="head-div">
-  <button mat-button color="primary" (click)="openCreateNewLocationDialog()" >Create new location</button>
+  <div>
+    <mat-form-field style="width: 50%">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  <div>
+    <button mat-button color="primary" (click)="openCreateNewLocationDialog()" >Create new location</button>
+  </div>
 </div>
 <br>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource">
-
     <!-- City Column -->
     <ng-container matColumnDef="city" width="20%">
       <th mat-header-cell *matHeaderCellDef> City </th>

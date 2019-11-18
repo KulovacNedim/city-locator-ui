@@ -68,12 +68,12 @@ export class MapComponent {
     setTimeout(() => {
       this.updated = false;
     }, 2.0 * 1000);
-  }
+  };
 
   openDialog(): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px',
-      data: 'Do you confirm update coordinates for ' + this.location.city.name.toUpperCase()  + '?'
+      data: 'Do you confirm update coordinates for ' + this.location.city.name.toUpperCase() + '?'
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
@@ -91,9 +91,6 @@ export class MapComponent {
       data: this.location.id.toString()
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        // setTimeout(dialogRef.close, 1000)
-      }
       this.locationService.passLocationToSaveModal.next({
         id: 0,
         longitude: 0,
@@ -106,7 +103,7 @@ export class MapComponent {
             name: ''
           }
         }
-      })
+      });
     });
   }
 }
