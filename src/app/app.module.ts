@@ -16,6 +16,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ConfirmationDialogComponent } from './shared/modals/confirmation-dialog/confirmation-dialog.component';
 import { SaveLocationComponent } from './save-location/save-location.component';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
 
 
 const appRoutes: Routes = [
@@ -26,7 +27,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent, TableComponent, MapComponent, ButtonComponent, ConfirmationDialogComponent, SaveLocationComponent
+    AppComponent, TableComponent, MapComponent, ButtonComponent, ConfirmationDialogComponent, SaveLocationComponent, SpinnerComponent
   ],
   imports: [
     BrowserModule,

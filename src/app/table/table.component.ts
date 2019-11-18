@@ -10,6 +10,7 @@ import {SaveLocationComponent} from '../save-location/save-location.component';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
+  spinner = true;
   dataSource;
   data;
 
@@ -35,6 +36,7 @@ export class TableComponent implements OnInit {
       this.data = resData;
       this.dataSource = new MatTableDataSource(resData);
       this.dataSource.paginator = this.paginator;
+      this.spinner = false;
 
       this.dataSource.filterPredicate = (data, filter: string): boolean => {
         return data.city.name.toLowerCase().includes(filter) || data.city.state.name.toLowerCase().includes(filter) ||
