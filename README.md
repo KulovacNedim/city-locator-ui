@@ -6,11 +6,11 @@ It is basic CRUD application integrating Google Maps.
 
 ## Screenshoots
 
-<img src="pics/table-view.JPG" title="table view" alt="table-view.JPG">
+<img src="pics/table-view.png" title="table view" alt="table-view.png">
 
-<img src="pics/dedicated-view.JPG" title="table view" alt="dedicated-view.JPG">
+<img src="pics/dedicated-view.png" title="table view" alt="dedicated-view.png">
 
-<img src="pics/create-update-view.JPG" title="table view" alt="create-update-view.JPG">
+<img src="pics/create-update-view.png" title="table view" alt="create-update-view.png">
 
 ## Clone
 
