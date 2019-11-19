@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BehaviorSubject, Observable, throwError} from 'rxjs';
+import {LocationModel} from '../../models/location.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,8 @@ export class LocationService {
     return this.http.get('http://localhost:8080/api/location');
   }
 
-  public submitLocation(location: any): Observable<any> {
-    return this.http.put(`http://localhost:8080/api/location`, location);
+  public submitLocation(location: any): Observable<LocationModel> {
+    return this.http.put<LocationModel>(`http://localhost:8080/api/location`, location);
   }
 
   public deleteLocation(id: number) {
@@ -28,8 +29,8 @@ export class LocationService {
     return this.http.get('http://localhost:8080/api/location/' + id);
   }
 
-  public saveLocation(location: any): Observable<any> {
-    return this.http.post(`http://localhost:8080/api/location`, location);
+  public saveLocation(location: LocationModel): Observable<LocationModel> {
+    return this.http.post<LocationModel>(`http://localhost:8080/api/location`, location);
   }
 
 

@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {ConfirmationDialogComponent} from '../shared/modals/confirmation-dialog/confirmation-dialog.component';
 import {SaveLocationComponent} from '../save-location/save-location.component';
+import {LocationModel} from '../shared/models/location.model';
 
 @Component({
   selector: 'app-map',
@@ -13,7 +14,7 @@ import {SaveLocationComponent} from '../save-location/save-location.component';
 export class MapComponent {
 
   title = 'city-locator-ui';
-  location: any;
+  location: LocationModel;
   coords: {
     lat: number
     lng: number
@@ -31,7 +32,6 @@ export class MapComponent {
       this.location = location;
     });
   }
-
 
   onChoseLocation(event) {
     this.coords = event.coords;
@@ -68,7 +68,7 @@ export class MapComponent {
     setTimeout(() => {
       this.updated = false;
     }, 2.0 * 1000);
-  };
+  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
