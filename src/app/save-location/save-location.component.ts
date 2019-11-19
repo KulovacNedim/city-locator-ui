@@ -4,6 +4,7 @@ import {ErrorStateMatcher} from '@angular/material/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 import {ConfirmationDialogComponent} from '../shared/modals/confirmation-dialog/confirmation-dialog.component';
 import {LocationService} from '../shared/services/location-service/location.service';
+import {LocationModel} from '../shared/models/location.model';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -21,7 +22,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class SaveLocationComponent {
 
-  location = {
+  location: LocationModel = {
     id: 0,
     longitude: 0,
     latitude: 0,
@@ -97,7 +98,7 @@ export class SaveLocationComponent {
     this.mapMarker.markerLng = $event.coords.lng;
   }
 
-  openDialog(id: any): void {
+  openDialog(): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px',
       data: this.location.id === 0 ? 'Do you confirm the creation of this Location?' : 'Do you confirm update for this Location?'

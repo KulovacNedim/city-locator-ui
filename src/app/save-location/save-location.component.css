@@ -59,3 +59,15 @@ agm-map {
   color: crimson;
   font-weight: bold;
 }
+
+@media (max-width: 600px) {
+  .left-side {
+     display: block;
+     width: 100%;
+   }
+  .right-side {
+    display: none;
+    width: 100%;
+  }
+}
+

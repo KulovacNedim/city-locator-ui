@@ -3,6 +3,7 @@ import {MatDialog, MatPaginator, MatTableDataSource} from '@angular/material';
 import {LocationService} from '../shared/services/location-service/location.service';
 import {ConfirmationDialogComponent} from '../shared/modals/confirmation-dialog/confirmation-dialog.component';
 import {SaveLocationComponent} from '../save-location/save-location.component';
+import {LocationModel} from '../shared/models/location.model';
 
 @Component({
   selector: 'app-table',
@@ -23,7 +24,6 @@ export class TableComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   applyFilter(filterValue: string) {
-    console.log(this.data);
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
@@ -32,7 +32,7 @@ export class TableComponent implements OnInit {
   }
 
   getLocations = () => {
-    this.locationService.getLocations().subscribe((resData: any[]) => {
+    this.locationService.getLocations().subscribe((resData: LocationModel[]) => {
       this.data = resData;
       this.dataSource = new MatTableDataSource(resData);
       this.dataSource.paginator = this.paginator;
@@ -44,21 +44,20 @@ export class TableComponent implements OnInit {
           data.id.toString().toLowerCase().includes(filter) === filter;
       };
     });
-  }
+  };
 
-  select(element: any) {
+  select(element: LocationModel) {
     this.locationService.selectedLocation.next(element);
   }
 
-  openDialog(id: any): void {
+  openDialog(id: number): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px',
+      data: 'Do you confirm the deletion data?'
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.locationService.deleteLocation(id).subscribe(res => {
-          this.getLocations();
-        });
+        this.locationService.deleteLocation(id).subscribe(() => this.getLocations());
       }
     });
   }
@@ -68,8 +67,6 @@ export class TableComponent implements OnInit {
       width: '850px',
       data: '0'
     });
-    dialogRef.afterClosed().subscribe(result => {
-      this.getLocations();
-    });
+    dialogRef.afterClosed().subscribe(() => this.getLocations());
   }
 }
