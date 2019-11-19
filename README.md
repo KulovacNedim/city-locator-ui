@@ -10,7 +10,7 @@ It is basic CRUD application integrating Google Maps.
 
 <img src="pics/dedicated-view.png" title="table view" alt="dedicated-view.png">
 
-<img src="pics/create-update-view.png" title="table view" alt="create-update-view.png">
+<img src="pics/save-update-modal.png" title="table view" alt="save-update-modal.png">
 
 ## Clone
 
