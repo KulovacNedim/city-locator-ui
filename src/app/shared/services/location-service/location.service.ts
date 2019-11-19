@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import {LocationModel} from '../../models/location.model';
 import { environment } from '../../../../environments/environment';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class LocationService {
   selectedLocation: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
   passLocationToSaveModal: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   public getLocations() {
     return this.http.get(this.location_api);
@@ -33,18 +34,5 @@ export class LocationService {
 
   public saveLocation(location: LocationModel): Observable<LocationModel> {
     return this.http.post<LocationModel>(this.location_api, location);
-  }
-
-
-  private handleError(err) {
-    return throwError(err);
-  }
-
-  private getHeader() {
-    const headerProperties = {
-      'Content-Type': 'application/json',
-      responseType: 'text'
-    };
-    return new HttpHeaders(headerProperties);
   }
 }

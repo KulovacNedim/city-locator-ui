@@ -17,22 +17,29 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ConfirmationDialogComponent } from './shared/modals/confirmation-dialog/confirmation-dialog.component';
 import { SaveLocationComponent } from './save-location/save-location.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
-
+import {NotFoundComponent} from './shared/error/not-found/not-found.component';
 
 const appRoutes: Routes = [
   {path: '', component: TableComponent},
   {path: 'map', component: MapComponent},
-
+  {path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({
   declarations: [
-    AppComponent, TableComponent, MapComponent, ButtonComponent, ConfirmationDialogComponent, SaveLocationComponent, SpinnerComponent
+    AppComponent,
+    TableComponent,
+    MapComponent,
+    ButtonComponent,
+    ConfirmationDialogComponent,
+    SaveLocationComponent,
+    SpinnerComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBYXalwwt0jLpTSN5BHKG4vixfneOgKDY4'
+      apiKey: 'AIzaSyBsKqLH8TKUMBTjACQBFkqdHDj9FtpCVpk'
     }),
     BrowserAnimationsModule,
     MatSliderModule,
