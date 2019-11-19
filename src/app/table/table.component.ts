@@ -53,6 +53,7 @@ export class TableComponent implements OnInit {
   openDialog(id: number): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px',
+      data: 'Do you confirm the deletion data?'
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
