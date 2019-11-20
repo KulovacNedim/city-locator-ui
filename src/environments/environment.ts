@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  location_api: 'http://localhost:8080/api/location',
+  location_api: 'https://city-locator-rest.herokuapp.com/api/location',
   production: false
 };
 
