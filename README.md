@@ -4,6 +4,9 @@ Frontend Angular application created to serve together with the [backend SpringB
 
 It is basic CRUD application integrating Google Maps.
 
+# [Demo](https://city-locator-ui.herokuapp.com/)
+[Click here to see demo](https://city-locator-ui.herokuapp.com/)
+
 ## Screenshoots
 
 <img src="pics/table-view.png" title="table view" alt="table-view.png">
@@ -16,6 +19,8 @@ It is basic CRUD application integrating Google Maps.
 
 Clone this repo to your local machine using `https://github.com/KulovacNedim/city-locator-ui.git`
 and run `npm init` to install all dependencies
+
+To run application on local machine, please run ``start-dev`` script or set your IDE to run it. ``start`` script is reserved to run node server when deployed to Heroku.
 
 ## CLI generated stub
 
